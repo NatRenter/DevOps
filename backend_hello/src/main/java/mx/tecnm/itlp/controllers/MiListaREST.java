@@ -34,5 +34,30 @@ public class MiListaREST {
         }
     }
 
+    @GetMapping
+    public List<MiLista> consultar(){
+        return repository.consultar();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscar(@PathVariable int id){
+        try{
+            MiLista listaBuscada = repository.buscar(id);
+            return new ResponseEntity<MiLista>(listaBuscada, HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public void desactivar(@PathVariable int id) {
+        repository.desactivar(id);
+    }
+
+    public void desactivar(int id){
+        String sql = "UPDATE mi_lista SET activa = 0 WHERE id = ?";
+        conexion.update(sql, id);
+    }
+
 
 }
