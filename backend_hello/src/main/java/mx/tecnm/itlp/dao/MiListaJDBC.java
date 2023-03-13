@@ -21,5 +21,16 @@ public class MiListaJDBC {
         conexion.update(sql, lista.getFechaUltimoPago(), lista.getIdPerfiles(), lista.getIdPelicula());
     }
 
+    public List<MiLista> consultar(){
+        String sql = "SELECT * FROM mi_lista";
+        return conexion.query(sql, new MiListaRM());
+    }
+
+    public MiLista buscar(int id){
+        String sql = "SELECT * FROM mi_lista WHERE id = ?";
+        return conexion.queryForObject(sql, new MiListaRM(), id);
+    }
+    
+
 
 }
