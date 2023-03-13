@@ -54,10 +54,7 @@ public class MiListaREST {
         repository.desactivar(id);
     }
 
-    public void desactivar(int id){
-        String sql = "UPDATE mi_lista SET activa = 0 WHERE id = ?";
-        conexion.update(sql, id);
-    }
+    
 
 
 }
