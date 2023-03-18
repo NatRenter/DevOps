@@ -49,6 +49,15 @@ public class MiListaREST {
         }
     }
 
+    @GetMapping("/cantidad/{id}")
+    public int obtenerCantidadPeliculas(@PathVariable int id){
+        try{
+            return repository.cantidadPeliculas(id);
+        }catch(Exception e){
+            return 0;
+        }
+    }
+
     @DeleteMapping("/{id}")
     public void desactivar(@PathVariable int id) {
         repository.desactivar(id);
