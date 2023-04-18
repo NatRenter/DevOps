@@ -1,0 +1,25 @@
+package mx.tecnm.itlp.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.lang.Nullable;
+
+import mx.tecnm.itlp.models.Historial;
+
+public class HistorialRM implements RowMapper<Historial> {
+
+    @Override
+    @Nullable
+    public Historial mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Historial historial = new Historial();
+        historial.setId(rs.getInt("id"));
+        historial.setFecha(rs.getTimestamp("fecha"));
+        historial.setTiempoAvance(rs.getTime("tiempo_avance"));
+        historial.setPeliculaId(rs.getInt("pelicula_id"));
+        historial.setPerfilId(rs.getInt("perfil_id"));
+        return historial;
+    }
+    
+}
